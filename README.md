@@ -1,7 +1,6 @@
 # UPI Inspector
 
-Real-time, explainable UPI fraud prevention: a risk decision before the PIN screen, with the reason in plain words and the scam named. Prototype by team Semicolonist for DECODE SIH 2026. Everything here runs on one laptop at zero cost, on synthetic data.
-
+Real-time, explainable UPI fraud prevention: a risk decision before the PIN screen, with the reason in plain words and the scam named.
 **Documentation:** [docs/README.md](docs/README.md). What was built, how it was checked and what was measured: [docs/12-as-built.md](docs/12-as-built.md).
 
 ## Run it
