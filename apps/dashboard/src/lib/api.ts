@@ -1,5 +1,7 @@
 "use client";
 
+import { getPreviewResponse, PREVIEW_STAFF } from "./previewData";
+
 export const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export type Staff = { staff_id: string; name: string; email: string; role: "admin" | "analyst" | "auditor"; tenant_id: string };
@@ -12,6 +14,7 @@ export type Session = { token: string; staff: Staff; expiresAt: number; sessionE
 const KEY = "upi.staff.session.v2";
 const TENANT = "upi.staff.tenant";
 const NOTICE = "upi.staff.notice";
+const PREVIEW_TOKEN = "__UI_PREVIEW_LOCAL__";
 /** Sign out after this long without a key press, click or scroll, even though the pages keep polling. */
 export const IDLE_MS = 15 * 60_000;
 
@@ -26,10 +29,31 @@ export function idleFor(): number {
   return Date.now() - lastActivity;
 }
 
+export function isPreviewSession(): boolean {
+  return getSession()?.token === PREVIEW_TOKEN;
+}
+
+/** Enter local UI preview mode when the FastAPI backend is offline so designers can inspect all screens. */
+export function enterPreviewSession(): Session {
+  const life = 4 * 60 * 60 * 1000;
+  const s: Session = {
+    token: PREVIEW_TOKEN,
+    staff: PREVIEW_STAFF,
+    expiresAt: Date.now() + life,
+    sessionEndsAt: Date.now() + life,
+    authMethod: "preview",
+    life,
+  };
+  window.sessionStorage.setItem(KEY, JSON.stringify(s));
+  if (!window.localStorage.getItem(TENANT)) window.localStorage.setItem(TENANT, PREVIEW_STAFF.tenant_id);
+  noteActivity();
+  return s;
+}
+
 export function getSession(): Session | null {
   if (typeof window === "undefined") return null;
   try {
-    window.localStorage.removeItem("upi.staff.session");       // the old copy, which outlived the tab
+    window.localStorage.removeItem("upi.staff.session"); // the old copy, which outlived the tab
     const raw = window.sessionStorage.getItem(KEY);
     const s = raw ? (JSON.parse(raw) as Session) : null;
     if (s && s.expiresAt <= Date.now()) {
@@ -70,7 +94,7 @@ export function takeNotice(): string | null {
 /** End the session on the server, so the token stops working everywhere, then forget it here. */
 export async function signOut(notice?: string) {
   const s = getSession();
-  if (s) {
+  if (s && s.token !== PREVIEW_TOKEN) {
     try {
       await fetch(`${API}/v1/auth/logout`, { method: "POST", headers: { Authorization: `Bearer ${s.token}` }, cache: "no-store" });
     } catch {
@@ -103,7 +127,7 @@ export class ApiError extends Error {
  *  not renewed, so it lapses by itself. One renewal at a time, however many requests are waiting. */
 function renewIfDue(): Promise<void> | null {
   const s = getSession();
-  if (!s) return null;
+  if (!s || s.token === PREVIEW_TOKEN) return null;
   if (s.expiresAt - Date.now() > Math.min(10 * 60_000, s.life / 3)) return null;
   if (idleFor() > IDLE_MS) return null;
   if (!refreshing) {
@@ -113,7 +137,7 @@ function renewIfDue(): Promise<void> | null {
         if (res.ok && getSession()?.token === s.token) {
           const last = lastActivity;
           adoptSession((await res.json()) as Grant, s.staff);
-          lastActivity = last;                       // renewing is not something the person did
+          lastActivity = last; // renewing is not something the person did
         }
       } catch {
         /* offline: carry on with the token we have */
@@ -126,9 +150,12 @@ function renewIfDue(): Promise<void> | null {
 }
 
 export async function api<T = any>(path: string, opts: { method?: string; body?: any; auth?: boolean } = {}): Promise<T> {
+  const s = getSession();
+  if (opts.auth !== false && s?.token === PREVIEW_TOKEN) {
+    return getPreviewResponse(path, opts.body) as T;
+  }
   if (opts.auth !== false) await renewIfDue();
   const headers: Record<string, string> = { Accept: "application/json" };
-  const s = getSession();
   if (opts.auth !== false && s) {
     headers.Authorization = `Bearer ${s.token}`;
     headers["X-Tenant"] = getTenant();

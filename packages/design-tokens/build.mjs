@@ -11,12 +11,21 @@ const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, "..", "..");
 const t = JSON.parse(readFileSync(resolve(here, "tokens.json"), "utf8"));
 const kebab = (s) => s.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
+const kebabNum = (s) => s.replace(/([a-z0-9])([A-Z])/g, "$1-$2").replace(/([a-z])([0-9])/g, "$1-$2").toLowerCase();
 
 const lines = [":root {"];
-for (const [k, v] of Object.entries(t.color)) lines.push(`  --c-${kebab(k)}: ${v};`);
+for (const [k, v] of Object.entries(t.color)) {
+  const a = kebab(k);
+  const b = kebabNum(k);
+  lines.push(`  --c-${a}: ${v};`);
+  if (b !== a) lines.push(`  --c-${b}: ${v};`);
+}
 for (const [k, v] of Object.entries(t.radius)) lines.push(`  --r-${k}: ${v}px;`);
 t.space.forEach((v, i) => lines.push(`  --s-${i + 1}: ${v}px;`));
-for (const [k, v] of Object.entries(t.shadow)) lines.push(`  --shadow-${k}: ${v};`);
+if (t.spacing) {
+  for (const [k, v] of Object.entries(t.spacing)) lines.push(`  --sp-${kebab(k)}: ${v}px;`);
+}
+for (const [k, v] of Object.entries(t.shadow)) lines.push(`  --shadow-${kebab(k)}: ${v};`);
 for (const [k, v] of Object.entries(t.type)) {
   lines.push(`  --t-${kebab(k)}-size: ${v.size}px;`, `  --t-${kebab(k)}-line: ${v.line}px;`, `  --t-${kebab(k)}-weight: ${v.weight};`);
 }

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { io, Socket } from "socket.io-client";
-import { API, api, getSession } from "./api";
+import { API, api, getSession, isPreviewSession } from "./api";
 import { bump, bumpReputation, driftAlert, pushDecision, setConnected, store, useAppSelector } from "./store";
 
 /** Fetch with loading and error state. Refetches when `deps` change or `reload()` is called. */
@@ -49,7 +49,7 @@ let socket: Socket | null = null;
 /** One socket for the dashboard. Events are notifications: pages refetch over REST. */
 export function useLiveSocket(enabled: boolean) {
   useEffect(() => {
-    if (!enabled) return;
+    if (!enabled || isPreviewSession()) return;
     const s = getSession();
     if (!s) return;
     // The token is read each time the socket (re)connects, so a reconnect after a renewal uses the new one.

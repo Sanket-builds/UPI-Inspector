@@ -57,7 +57,7 @@ function NetworkView() {
                 graphData={graph as any} width={size.w} height={size.h} backgroundColor="rgba(0,0,0,0)" cooldownTicks={120}
                 nodeRelSize={5} nodeVal={(n: any) => (n.centre ? 6 : n.band === "REPORTED" ? 4 : 2)}
                 nodeLabel={(n: any) => `${n.registered_name} (${n.id}) · ${BAND_LABEL[n.band] || n.band}`}
-                linkColor={(l: any) => (l.type === "device" ? "rgba(56,214,255,0.55)" : "rgba(167,164,194,0.35)")}
+                linkColor={(l: any) => (l.type === "device" ? "rgba(83,58,253,0.55)" : "rgba(100,116,141,0.35)")}
                 linkLineDash={(l: any) => (l.type === "device" ? [4, 4] : null)}
                 linkWidth={(l: any) => (l.type === "device" ? 1 : Math.min(4, 0.6 + Math.log10(1 + (l.amount || 0)) * 0.5))}
                 linkDirectionalArrowLength={(l: any) => (l.type === "payment" ? 4 : 0)} linkDirectionalArrowRelPos={1}
@@ -66,20 +66,20 @@ function NetworkView() {
                   const r = n.centre ? 9 : n.band === "REPORTED" ? 7 : 5;
                   ctx.beginPath();
                   ctx.arc(n.x, n.y, r, 0, 2 * Math.PI);
-                  ctx.fillStyle = BAND_COLOR[n.band] || "#8B88B5";
+                  ctx.fillStyle = BAND_COLOR[n.band] || "#64748d";
                   ctx.fill();
                   if (n.centre || (sel && sel.id === n.id)) {
                     ctx.lineWidth = 2 / scale + 1;
-                    ctx.strokeStyle = "#ffffff";
+                    ctx.strokeStyle = "#533afd";
                     ctx.stroke();
                   }
                   if (n.kind === "merchant") {
-                    ctx.fillStyle = "#070614";
+                    ctx.fillStyle = "#ffffff";
                     ctx.fillRect(n.x - 2, n.y - 2, 4, 4);
                   }
                   if (scale > 1.6 || n.centre || n.band === "REPORTED") {
                     ctx.font = `${Math.max(3.2, 11 / scale)}px sans-serif`;
-                    ctx.fillStyle = "#C9C6E6";
+                    ctx.fillStyle = "#0d253d";
                     ctx.textAlign = "center";
                     ctx.fillText(n.registered_name, n.x, n.y + r + 10 / scale + 2);
                   }

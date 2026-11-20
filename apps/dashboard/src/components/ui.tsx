@@ -47,7 +47,7 @@ export function Stat({ label, value, sub, tone }: { label: string; value: React.
     <div className="card stat">
       <div className="k">{label}</div>
       <div className="v" style={tone ? { color: tone } : undefined}>{value}</div>
-      {sub && <div className="caption" style={{ marginTop: 4 }}>{sub}</div>}
+      {sub && <div className="caption" style={{ marginTop: 6 }}>{sub}</div>}
     </div>
   );
 }
@@ -103,8 +103,8 @@ export function PageHead({ title, sub, right }: { title: string; sub?: React.Rea
   return (
     <div className="row between top wrap" style={{ marginBottom: 4 }}>
       <div>
-        <h1>{title}</h1>
-        {sub && <p className="muted" style={{ marginTop: 4, maxWidth: 760 }}>{sub}</p>}
+        <h1 className="display-lg">{title}</h1>
+        {sub && <p className="muted" style={{ marginTop: 6, maxWidth: 760 }}>{sub}</p>}
       </div>
       {right && <div className="row wrap">{right}</div>}
     </div>
@@ -113,9 +113,9 @@ export function PageHead({ title, sub, right }: { title: string; sub?: React.Rea
 
 export function Modal({ title, children, onClose, footer }: { title: string; children: React.ReactNode; onClose: () => void; footer?: React.ReactNode }) {
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 50, background: "rgba(3,2,10,0.72)", display: "grid", placeItems: "center", padding: 16 }}
+    <div style={{ position: "fixed", inset: 0, zIndex: 50, background: "rgba(13, 37, 61, 0.45)", backdropFilter: "blur(4px)", display: "grid", placeItems: "center", padding: 16 }}
       onClick={onClose} role="dialog" aria-modal="true" aria-label={title}>
-      <div className="card raised" style={{ width: "min(520px, 100%)", boxShadow: "var(--shadow-card)" }} onClick={(e) => e.stopPropagation()}>
+      <div className="card raised" style={{ width: "min(520px, 100%)" }} onClick={(e) => e.stopPropagation()}>
         <div className="card-head"><h2>{title}</h2></div>
         <div className="col">{children}</div>
         {footer && <div className="row" style={{ justifyContent: "flex-end", marginTop: 20 }}>{footer}</div>}

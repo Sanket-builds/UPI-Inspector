@@ -1,88 +1,108 @@
 // Generated from packages/design-tokens/tokens.json. Do not edit.
 export const tokens = {
   "color": {
-    "bg": "#070614",
-    "bgGlowViolet": "rgba(109, 74, 255, 0.22)",
-    "bgGlowBlue": "rgba(47, 107, 255, 0.12)",
-    "surface": "#0F0D1F",
-    "surfaceRaised": "#16142B",
-    "surfaceSunken": "#0B0A18",
-    "surfaceHover": "#1B1836",
-    "border": "#221F3A",
-    "borderStrong": "#34315A",
-    "text": "#F5F4FF",
-    "textSecondary": "#A7A4C2",
-    "textMuted": "#6F6C8F",
-    "textInverse": "#0B0A18",
-    "brand": "#6D4AFF",
-    "brandHover": "#7F61FF",
-    "brandSubtle": "rgba(109, 74, 255, 0.16)",
-    "brandOn": "#FFFFFF",
-    "accent": "#2F6BFF",
-    "accentCyan": "#38D6FF",
-    "white": "#FFFFFF",
-    "safe": "#34D399",
-    "safeSubtle": "rgba(52, 211, 153, 0.14)",
-    "safeOn": "#04130D",
-    "warning": "#FBBF24",
-    "warningSubtle": "rgba(251, 191, 36, 0.14)",
-    "warningOn": "#1A1202",
-    "stepup": "#FB923C",
-    "stepupSubtle": "rgba(251, 146, 60, 0.16)",
-    "stepupOn": "#1C0D02",
-    "block": "#F43F5E",
-    "blockSubtle": "rgba(244, 63, 94, 0.16)",
-    "blockOn": "#FFFFFF",
-    "neutralChip": "#2A2745",
-    "neutralChipText": "#C9C6E6",
-    "chart1": "#6D4AFF",
-    "chart2": "#38D6FF",
-    "chart3": "#34D399",
-    "chart4": "#FBBF24",
-    "chart5": "#FB923C",
-    "chart6": "#F43F5E"
+    "primary": "#533afd",
+    "primaryDeep": "#4434d4",
+    "primaryPress": "#2e2b8c",
+    "primarySoft": "#665efd",
+    "primaryBgSubduedHover": "#b9b9f9",
+    "brandDark900": "#1c1e54",
+    "ink": "#0d253d",
+    "inkSecondary": "#273951",
+    "inkMute": "#64748d",
+    "inkMute2": "#61718a",
+    "onPrimary": "#ffffff",
+    "canvas": "#ffffff",
+    "canvasSoft": "#f6f9fc",
+    "canvasCream": "#f5e9d4",
+    "hairline": "#e3e8ee",
+    "hairlineInput": "#a8c3de",
+    "ruby": "#ea2261",
+    "magenta": "#f96bee",
+    "lemon": "#9b6829",
+    "shadowBlue": "#003770",
+    "bg": "#f6f9fc",
+    "bgGlowViolet": "rgba(83, 58, 253, 0.14)",
+    "bgGlowBlue": "rgba(185, 185, 249, 0.28)",
+    "surface": "#ffffff",
+    "surfaceRaised": "#ffffff",
+    "surfaceSunken": "#f6f9fc",
+    "surfaceHover": "#eef3f8",
+    "border": "#e3e8ee",
+    "borderStrong": "#a8c3de",
+    "text": "#0d253d",
+    "textSecondary": "#273951",
+    "textMuted": "#64748d",
+    "textInverse": "#ffffff",
+    "brand": "#533afd",
+    "brandHover": "#4434d4",
+    "brandSubtle": "rgba(83, 58, 253, 0.12)",
+    "brandOn": "#ffffff",
+    "accent": "#665efd",
+    "accentCyan": "#533afd",
+    "white": "#ffffff",
+    "safe": "#0e7a57",
+    "safeSubtle": "rgba(14, 122, 87, 0.10)",
+    "safeOn": "#ffffff",
+    "warning": "#9b6829",
+    "warningSubtle": "#f5e9d4",
+    "warningOn": "#0d253d",
+    "stepup": "#c2571a",
+    "stepupSubtle": "rgba(194, 87, 26, 0.12)",
+    "stepupOn": "#ffffff",
+    "block": "#ea2261",
+    "blockSubtle": "rgba(234, 34, 97, 0.11)",
+    "blockOn": "#ffffff",
+    "neutralChip": "#edf2f7",
+    "neutralChipText": "#273951",
+    "chart1": "#533afd",
+    "chart2": "#665efd",
+    "chart3": "#0e7a57",
+    "chart4": "#9b6829",
+    "chart5": "#f96bee",
+    "chart6": "#ea2261"
   },
   "font": {
-    "display": "DM Sans",
-    "body": "DM Sans",
+    "display": "sohne-var, Inter, 'SF Pro Display', system-ui, -apple-system, sans-serif",
+    "body": "sohne-var, Inter, 'SF Pro Display', system-ui, -apple-system, sans-serif",
     "mono": "JetBrains Mono",
     "devanagari": "Noto Sans Devanagari"
   },
   "type": {
     "display": {
-      "size": 30,
-      "line": 36,
-      "weight": 700
+      "size": 32,
+      "line": 35,
+      "weight": 300
     },
     "title": {
-      "size": 22,
-      "line": 28,
-      "weight": 600
+      "size": 26,
+      "line": 29,
+      "weight": 300
     },
     "heading": {
-      "size": 17,
-      "line": 24,
-      "weight": 600
+      "size": 20,
+      "line": 28,
+      "weight": 300
     },
     "body": {
       "size": 15,
-      "line": 22,
-      "weight": 400
+      "line": 21,
+      "weight": 300
     },
     "bodyLarge": {
-      "size": 18,
-      "line": 27,
-      "weight": 400
+      "size": 16,
+      "line": 22,
+      "weight": 300
     },
     "caption": {
-      "size": 12.5,
+      "size": 13,
       "line": 18,
-      "weight": 500
+      "weight": 400
     },
     "amount": {
-      "size": 34,
-      "line": 40,
-      "weight": 700
+      "size": 32,
+      "line": 36,
+      "weight": 300
     }
   },
   "space": [
@@ -95,16 +115,29 @@ export const tokens = {
     32,
     40
   ],
-  "radius": {
+  "spacing": {
+    "xxs": 2,
+    "xs": 4,
     "sm": 8,
     "md": 12,
-    "lg": 20,
-    "xl": 28,
-    "pill": 999
+    "lg": 16,
+    "xl": 24,
+    "xxl": 32,
+    "huge": 64
+  },
+  "radius": {
+    "xs": 4,
+    "sm": 6,
+    "md": 8,
+    "lg": 12,
+    "xl": 16,
+    "pill": 9999
   },
   "shadow": {
-    "card": "0 0 0 1px rgba(255,255,255,0.06), 0 12px 40px rgba(8,6,24,0.6)",
-    "brand": "0 8px 30px rgba(109,74,255,0.35)"
+    "level1": "rgba(0, 55, 112, 0.08) 0 1px 3px",
+    "level2": "rgba(0, 55, 112, 0.08) 0 8px 24px, rgba(0, 55, 112, 0.04) 0 2px 6px",
+    "card": "rgba(0, 55, 112, 0.08) 0 1px 3px",
+    "brand": "rgba(83, 58, 253, 0.22) 0 4px 14px"
   },
   "motion": {
     "fast": 120,

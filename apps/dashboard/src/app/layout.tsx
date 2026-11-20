@@ -1,14 +1,25 @@
 import type { Metadata } from "next";
-import { DM_Sans, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import Providers from "@/components/Providers";
 import "./globals.css";
 
-const body = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-body", display: "swap" });
-const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono", display: "swap" });
+const body = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-body",
+  display: "swap",
+});
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "UPI Inspector",
-  description: "Real-time, explainable UPI fraud prevention. Prototype on synthetic data.",
+  title: "UPI Inspector — Financial-Grade UPI Fraud Infrastructure",
+  description:
+    "Real-time, explainable UPI fraud prevention before the PIN screen. Built with Stripi-inspired financial infrastructure design language.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

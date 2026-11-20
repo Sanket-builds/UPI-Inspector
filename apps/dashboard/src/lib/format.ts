@@ -37,8 +37,8 @@ export const OUTCOME_LABEL: Record<string, string> = {
   STEPUP_FAILED: "Admitted being coached", STEPUP_LOCKED: "Step-up locked after wrong codes", BLOCKED: "Declined", HOLD_CANCELLED: "Cancelled a held payment", HOLD_CONFIRMED: "Confirmed after hold",
   HOLD_EXPIRED: "Hold expired", GUARDIAN_DENIED: "Guardian refused", GUARDIAN_TIMEOUT: "Guardian did not answer", SHADOW_ALLOWED: "Shadow: allowed",
 };
-export const TIER_COLOR: Record<string, string> = { SAFE: "#34D399", WARNING: "#FBBF24", STEP_UP: "#FB923C", BLOCK: "#F43F5E" };
-export const BAND_COLOR: Record<string, string> = { TRUSTED: "#34D399", NEUTRAL: "#8B88B5", NO_HISTORY: "#5C5980", CAUTION: "#FBBF24", REPORTED: "#F43F5E" };
+export const TIER_COLOR: Record<string, string> = { SAFE: "#0e7a57", WARNING: "#9b6829", STEP_UP: "#c2571a", BLOCK: "#ea2261" };
+export const BAND_COLOR: Record<string, string> = { TRUSTED: "#0e7a57", NEUTRAL: "#64748d", NO_HISTORY: "#a8c3de", CAUTION: "#9b6829", REPORTED: "#ea2261" };
 export const FAMILY: Record<string, string> = {
   DIGITAL_ARREST: "Digital arrest", FAKE_REFUND: "Fake refund", MULE_TRANSFER: "Mule transfer", IMPERSONATION: "Impersonation",
   KYC_BILL_THREAT: "KYC or bill threat", INVESTMENT_TASK: "Investment or task scam", UNCLASSIFIED: "Unclassified",

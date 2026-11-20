@@ -49,9 +49,9 @@ export default function SystemHealth() {
           <div style={{ height: 230 }}>
             <ResponsiveContainer>
               <AreaChart data={series as any[]} margin={{ left: -16, right: 8, top: 8 }}>
-                <CartesianGrid stroke="#221F3A" vertical={false} />
-                <XAxis dataKey="h" stroke="#6F6C8F" fontSize={11} /><YAxis stroke="#6F6C8F" fontSize={11} />
-                <Tooltip contentStyle={{ background: "#16142B", border: "1px solid #34315A", borderRadius: 12, fontSize: 12 }} />
+                <CartesianGrid stroke="#e3e8ee" vertical={false} />
+                <XAxis dataKey="h" stroke="#64748d" fontSize={11} /><YAxis stroke="#64748d" fontSize={11} />
+                <Tooltip contentStyle={{ background: "#ffffff", border: "1px solid #e3e8ee", borderRadius: 12, fontSize: 12, boxShadow: "rgba(0, 55, 112, 0.08) 0 8px 24px", color: "#0d253d" }} />
                 {["SAFE", "WARNING", "STEP_UP", "BLOCK"].map((t) => <Area key={t} dataKey={t} stackId="1" stroke={TIER_COLOR[t]} fill={TIER_COLOR[t]} fillOpacity={0.35} isAnimationActive={false} />)}
               </AreaChart>
             </ResponsiveContainer>

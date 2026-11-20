@@ -32,7 +32,7 @@ function Detail({ vpa }: { vpa: string }) {
           </div>
           <div className="col gap-1" style={{ textAlign: "right" }}>
             <div className="caption">TRUST SCORE (this bank&apos;s view)</div>
-            <div className="num" style={{ fontSize: 40, lineHeight: "44px", fontWeight: 700 }}>{r.trust_score}<span className="faint" style={{ fontSize: 18 }}> / 100</span></div>
+            <div className="num" style={{ fontSize: 40, lineHeight: "44px", fontWeight: 300, letterSpacing: "-0.8px" }}>{r.trust_score}<span className="faint" style={{ fontSize: 18 }}> / 100</span></div>
             <Link className="btn btn-ghost btn-sm" href={`/network?vpa=${encodeURIComponent(data.vpa)}`} style={{ alignSelf: "flex-end" }}><Network size={15} /> View network</Link>
           </div>
         </div>
@@ -49,13 +49,13 @@ function Detail({ vpa }: { vpa: string }) {
             <div style={{ height: 220 }}>
               <ResponsiveContainer>
                 <AreaChart data={hist} margin={{ left: -20, right: 8, top: 8 }}>
-                  <defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#6D4AFF" stopOpacity={0.5} /><stop offset="1" stopColor="#6D4AFF" stopOpacity={0} /></linearGradient></defs>
-                  <CartesianGrid stroke="#221F3A" vertical={false} />
-                  <XAxis dataKey="t" type="number" domain={["dataMin", "dataMax"]} tickFormatter={(t) => clock(new Date(t).toISOString())} stroke="#6F6C8F" fontSize={11} />
-                  <YAxis domain={[0, 100]} stroke="#6F6C8F" fontSize={11} />
-                  <Tooltip contentStyle={{ background: "#16142B", border: "1px solid #34315A", borderRadius: 12 }} labelFormatter={(t) => clock(new Date(Number(t)).toISOString(), true)}
+                  <defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#533afd" stopOpacity={0.28} /><stop offset="1" stopColor="#533afd" stopOpacity={0} /></linearGradient></defs>
+                  <CartesianGrid stroke="#e3e8ee" vertical={false} />
+                  <XAxis dataKey="t" type="number" domain={["dataMin", "dataMax"]} tickFormatter={(t) => clock(new Date(t).toISOString())} stroke="#64748d" fontSize={11} />
+                  <YAxis domain={[0, 100]} stroke="#64748d" fontSize={11} />
+                  <Tooltip contentStyle={{ background: "#ffffff", border: "1px solid #e3e8ee", borderRadius: 12, boxShadow: "rgba(0, 55, 112, 0.08) 0 8px 24px", color: "#0d253d" }} labelFormatter={(t) => clock(new Date(Number(t)).toISOString(), true)}
                     formatter={(v: any, _n: any, p: any) => [`${v} (${p.payload.band.toLowerCase().replace("_", " ")}${p.payload.cause ? ", " + p.payload.cause.replace("_", " ") : ""})`, "Trust score"]} />
-                  <Area type="stepAfter" dataKey="score" stroke="#6D4AFF" strokeWidth={2} fill="url(#g)" />
+                  <Area type="stepAfter" dataKey="score" stroke="#533afd" strokeWidth={2} fill="url(#g)" />
                 </AreaChart>
               </ResponsiveContainer>
             </div>

@@ -76,13 +76,13 @@ export default function DecisionDetail() {
               {data.label && <span className={`chip ${data.label.label === "FRAUD" ? "t-BLOCK" : "t-SAFE"}`}>Labelled {data.label.label === "FRAUD" ? "fraud" : "legitimate"}{data.label.by_name ? ` by ${data.label.by_name}` : ""}</span>}
               {data.transaction?.truth_is_fraud != null && <span className="chip" title="Ground truth from the simulator">Simulator truth: {data.transaction.truth_is_fraud ? `scam (${FAMILY[data.transaction.truth_family] || "?"})` : "legitimate"}</span>}
             </div>
-            <div style={{ fontSize: 34, lineHeight: "40px", fontWeight: 700 }} className="num">{inr(d.amount)}</div>
+            <div style={{ fontSize: 36, lineHeight: "42px", fontWeight: 300, letterSpacing: "-0.72px" }} className="num">{inr(d.amount)}</div>
             <div className="muted">{data.payer.name} <span className="mono">({data.payer.vpa})</span> → <strong style={{ color: "var(--c-text)" }}>{data.payee.registered_name || d.payee_vpa}</strong> <span className="mono">({d.payee_vpa})</span></div>
             {data.payee.claimed_name && <div className="caption">Name the payer was given: “{data.payee.claimed_name}”</div>}
           </div>
           <div className="col gap-1" style={{ textAlign: "right" }}>
             <div className="caption">SCORE</div>
-            <div style={{ fontSize: 34, lineHeight: "40px", fontWeight: 700, color: `var(--c-${d.tier === "SAFE" ? "safe" : d.tier === "WARNING" ? "warning" : d.tier === "STEP_UP" ? "stepup" : "block"})` }} className="num">{d.score.toFixed(2)}</div>
+            <div style={{ fontSize: 36, lineHeight: "42px", fontWeight: 300, letterSpacing: "-0.72px", color: `var(--c-${d.tier === "SAFE" ? "safe" : d.tier === "WARNING" ? "warning" : d.tier === "STEP_UP" ? "stepup" : "block"})` }} className="num">{d.score.toFixed(2)}</div>
             <div className="caption">{clock(d.created_at, true)} · {d.latency_ms} ms</div>
             <div className="caption mono">{d.model_version} · {d.rules_version}</div>
           </div>
@@ -92,7 +92,7 @@ export default function DecisionDetail() {
       <div className="grid g-main">
         <div className="col gap-4">
           {(data.summary || d.tier === "STEP_UP" || d.tier === "BLOCK") && (
-            <Card title={<span className="row gap-2"><Bot size={17} color="#a995ff" /> Case summary</span>} right={
+            <Card title={<span className="row gap-2"><Bot size={17} color="var(--c-primary)" /> Case summary</span>} right={
               <div className="row gap-2">
                 {data.summary && <span className="chip brand">AI-generated · {data.summary.provider}</span>}
                 {canWrite && <button className="btn btn-ghost btn-sm" disabled={act.busy} onClick={() => act.run(() => api(`/v1/decisions/${id}/summary/regenerate`, { method: "POST" })).then(reload)}><RefreshCw size={14} /> Regenerate</button>}

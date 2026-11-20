@@ -11,7 +11,7 @@ import { Banner, Card, Loading, Modal, PageHead, Segmented, Stat } from "@/compo
 
 const WINDOWS = [{ value: "24", label: "24 hours" }, { value: "168", label: "7 days" }, { value: "360", label: "15 days" }];
 const DEFAULTS = { t_warning: 0.3, t_stepup: 0.6, t_block: 0.85 };
-const tip = { background: "#16142B", border: "1px solid #34315A", borderRadius: 12, fontSize: 12 };
+const tip = { background: "#ffffff", border: "1px solid #e3e8ee", borderRadius: 12, fontSize: 12, boxShadow: "rgba(0, 55, 112, 0.08) 0 8px 24px", color: "#0d253d" };
 
 function Slider({ label, value, onChange, color, min, max }: { label: string; value: number; onChange: (v: number) => void; color: string; min: number; max: number }) {
   return (
@@ -113,14 +113,14 @@ export default function PolicyLab() {
               <div style={{ height: 250 }}>
                 <ResponsiveContainer>
                   <LineChart data={sim.curve.map((x: any) => ({ x: x.legit_interrupted * 100, y: x.scams_caught * 100, t: x.t_stepup }))} margin={{ left: -10, right: 16, top: 10, bottom: 14 }}>
-                    <CartesianGrid stroke="#221F3A" />
-                    <XAxis dataKey="x" type="number" domain={[0, "dataMax"]} stroke="#6F6C8F" fontSize={11} tickFormatter={(v) => `${Number(v).toFixed(1)}%`}
-                      label={{ value: "Legitimate payments interrupted", position: "insideBottom", offset: -8, fill: "#6F6C8F", fontSize: 11 }} />
-                    <YAxis domain={[0, 100]} stroke="#6F6C8F" fontSize={11} tickFormatter={(v) => `${v}%`} />
+                    <CartesianGrid stroke="#e3e8ee" />
+                    <XAxis dataKey="x" type="number" domain={[0, "dataMax"]} stroke="#64748d" fontSize={11} tickFormatter={(v) => `${Number(v).toFixed(1)}%`}
+                      label={{ value: "Legitimate payments interrupted", position: "insideBottom", offset: -8, fill: "#64748d", fontSize: 11 }} />
+                    <YAxis domain={[0, 100]} stroke="#64748d" fontSize={11} tickFormatter={(v) => `${v}%`} />
                     <Tooltip contentStyle={tip} formatter={(v: any) => `${Number(v).toFixed(1)}%`} labelFormatter={(v, pl: any) => `Step-Up at ${pl?.[0]?.payload?.t ?? ""} · ${Number(v).toFixed(2)}% interrupted`} />
-                    <Line dataKey="y" name="Scams caught" stroke="#6D4AFF" strokeWidth={2.5} dot={{ r: 2.5 }} isAnimationActive={false} />
-                    {c && <ReferenceDot x={(c.legit_stepup + c.legit_block) * 100} y={c.scams_caught * 100} r={7} fill="#A7A4C2" stroke="#fff" label={{ value: "Current", fill: "#A7A4C2", fontSize: 11, position: "right" }} />}
-                    {p && <ReferenceDot x={(p.legit_stepup + p.legit_block) * 100} y={p.scams_caught * 100} r={7} fill="#38D6FF" stroke="#fff" label={{ value: "Proposed", fill: "#38D6FF", fontSize: 11, position: "left" }} />}
+                    <Line dataKey="y" name="Scams caught" stroke="#533afd" strokeWidth={2.5} dot={{ r: 2.5 }} isAnimationActive={false} />
+                    {c && <ReferenceDot x={(c.legit_stepup + c.legit_block) * 100} y={c.scams_caught * 100} r={7} fill="#64748d" stroke="#fff" label={{ value: "Current", fill: "#64748d", fontSize: 11, position: "right" }} />}
+                    {p && <ReferenceDot x={(p.legit_stepup + p.legit_block) * 100} y={p.scams_caught * 100} r={7} fill="#533afd" stroke="#fff" label={{ value: "Proposed", fill: "#533afd", fontSize: 11, position: "left" }} />}
                   </LineChart>
                 </ResponsiveContainer>
               </div>
@@ -132,15 +132,15 @@ export default function PolicyLab() {
                 <div style={{ height: 210 }}>
                   <ResponsiveContainer>
                     <BarChart data={sim.histogram.map((h: any) => ({ x: h.lo.toFixed(2), Legitimate: h.legit, Scam: h.fraud }))} margin={{ left: -14, right: 8, top: 8 }}>
-                      <CartesianGrid stroke="#221F3A" vertical={false} />
-                      <XAxis dataKey="x" stroke="#6F6C8F" fontSize={10} interval={3} />
-                      <YAxis scale="sqrt" stroke="#6F6C8F" fontSize={10} />
-                      <Tooltip contentStyle={tip} cursor={{ fill: "rgba(255,255,255,0.04)" }} />
-                      <Bar dataKey="Legitimate" stackId="a" fill="#34D399" isAnimationActive={false} />
-                      <Bar dataKey="Scam" stackId="a" fill="#F43F5E" isAnimationActive={false} />
-                      <ReferenceLine x={(Math.floor(t.t_warning * 20) / 20).toFixed(2)} stroke="#FBBF24" strokeDasharray="4 3" />
-                      <ReferenceLine x={(Math.floor(t.t_stepup * 20) / 20).toFixed(2)} stroke="#FB923C" strokeDasharray="4 3" />
-                      <ReferenceLine x={(Math.floor(t.t_block * 20) / 20).toFixed(2)} stroke="#F43F5E" strokeDasharray="4 3" />
+                      <CartesianGrid stroke="#e3e8ee" vertical={false} />
+                      <XAxis dataKey="x" stroke="#64748d" fontSize={10} interval={3} />
+                      <YAxis scale="sqrt" stroke="#64748d" fontSize={10} />
+                      <Tooltip contentStyle={tip} cursor={{ fill: "rgba(83,58,253,0.06)" }} />
+                      <Bar dataKey="Legitimate" stackId="a" fill="#0e7a57" isAnimationActive={false} />
+                      <Bar dataKey="Scam" stackId="a" fill="#ea2261" isAnimationActive={false} />
+                      <ReferenceLine x={(Math.floor(t.t_warning * 20) / 20).toFixed(2)} stroke="#9b6829" strokeDasharray="4 3" />
+                      <ReferenceLine x={(Math.floor(t.t_stepup * 20) / 20).toFixed(2)} stroke="#c2571a" strokeDasharray="4 3" />
+                      <ReferenceLine x={(Math.floor(t.t_block * 20) / 20).toFixed(2)} stroke="#ea2261" strokeDasharray="4 3" />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
@@ -152,7 +152,7 @@ export default function PolicyLab() {
                 <table className="table">
                   <thead><tr><th></th><th className="right">Current</th><th className="right">Proposed</th></tr></thead>
                   <tbody>{rowsCmp.map(([label, fn]) => (
-                    <tr key={label}><td>{label}</td><td className="right num muted">{fn(c)}</td><td className="right num" style={{ color: fn(c) !== fn(p) ? "var(--c-accent-cyan)" : undefined }}>{fn(p)}</td></tr>
+                    <tr key={label}><td>{label}</td><td className="right num muted">{fn(c)}</td><td className="right num" style={{ color: fn(c) !== fn(p) ? "var(--c-primary)" : undefined }}>{fn(p)}</td></tr>
                   ))}</tbody>
                 </table>
               )}

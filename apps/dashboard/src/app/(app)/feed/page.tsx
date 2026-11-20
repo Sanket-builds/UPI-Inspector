@@ -92,7 +92,7 @@ export default function Feed() {
                       <span className="row gap-2">
                         {d.call_linked && <span title="A call is linked to this payment"><PhoneCall size={15} color="var(--c-stepup)" /></span>}
                         {d.message_linked && <span title="A flagged message is linked to this payment"><MessageSquareWarning size={15} color="var(--c-accent-cyan)" /></span>}
-                        {d.has_guardian && <span title="A guardian was involved"><UserRoundCheck size={15} color="#a995ff" /></span>}
+                        {d.has_guardian && <span title="A guardian was involved"><UserRoundCheck size={15} color="var(--c-primary)" /></span>}
                         {d.label && <span className={`chip ${d.label === "FRAUD" ? "t-BLOCK" : "t-SAFE"}`}>{d.label === "FRAUD" ? "Fraud" : "Legit"}</span>}
                       </span>
                     </td>
